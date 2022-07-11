@@ -1,18 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "./Header";
-import hello from "./img/hello.png";
+import Mainpage from "./Mainpage";
 import "./scss/style.scss";
+import SideBar from "./SideBar";
 
 function App() {
-  return (
-    <div className="App">
-      <Header />
-      <p className="hello">
-        <img src={hello} alt="Hello" />
-        World
-      </p>
-    </div>
-  );
+    const [isToggleSidebar, setIsToggleSidebar] = useState(false)
+    const handleCollapseSidebar = () => setIsToggleSidebar(pre => !pre)
+    return (
+        <div className="App">
+            <Header onToggleSidebar = {handleCollapseSidebar}/>
+            <div className="main-body">
+                <SideBar isToggleSidebar={isToggleSidebar}/>
+                <Mainpage/>
+            </div>
+        </div>
+    );
 }
 
 export default App;
